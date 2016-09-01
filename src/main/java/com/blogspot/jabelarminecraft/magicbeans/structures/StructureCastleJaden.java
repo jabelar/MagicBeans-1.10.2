@@ -98,17 +98,17 @@ public class StructureCastleJaden extends Structure
 					if (chanceOfPotionType <= 3) // randomize potion
 					{
 						// fire resistance
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8259));
+						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8297)); // was metadata 8259
 					}
 					else if (chanceOfPotionType <= 8) 
 					{
 						// regeneration
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8257));
+						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8289)); // was metadata 8257
 					}
 					else
 					{
 						// water breathing
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8269));
+						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8290)); // was metadata 8269
 					}
 				}
 			}

@@ -46,8 +46,10 @@ public class BlockCloud extends Block
     public BlockCloud()
     {
         super(MagicBeans.materialCloud);
+        
         // DEBUG
         System.out.println("BlockCloud constructor");
+        
         // override default values of Block, where appropriate
         setUnlocalizedName("magicbeanscloud");
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
@@ -68,6 +70,12 @@ public class BlockCloud extends Block
         return BlockRenderLayer.TRANSLUCENT;
     }
     
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
+        return false;
+    }
+    
     /**
      * Returns true if the given side of this block type should be rendered (if it's solid or not), if the adjacent
      * block is at the given coordinates. Args: blockAccess, x, y, z, side
@@ -86,6 +94,16 @@ public class BlockCloud extends Block
 	public EnumPushReaction getMobilityFlag(IBlockState parIBlockState)
     {
         return getMaterial(parIBlockState).getMobilityFlag();
+    }
+
+
+    /**
+     * Used to determine ambient occlusion and culling when rebuilding chunks for render
+     */
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
     }
 
     /**
@@ -116,6 +134,12 @@ public class BlockCloud extends Block
     	return true;
     }
     
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        return true;
+    }
 
     /**
      * Determines if a new block can be replace the space occupied by this one,
