@@ -437,7 +437,7 @@ public class EventHandler
         // DEBUG
         System.out.println("Interacting with main hand");
     	
-    	Entity theEntity = event.getTarget();
+    	Entity theEntity = event.getTarget(); 
 
         if (theEntity instanceof EntityCow && !(theEntity instanceof EntityFamilyCow))
         {
