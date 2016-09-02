@@ -294,7 +294,7 @@ public class Utilities
 //                if (newBlock.getLightOpacity() != block1.getLightOpacity() || newBlock.getLightValue() != block1.getLightValue())
 //                {
 //                    parWorld.theProfiler.startSection("checkLight");
-//                    parWorld.checkLight(parBlockPos);
+                    parWorld.checkLight(parBlockPos);
 //                    parWorld.theProfiler.endSection();
 //                }
 

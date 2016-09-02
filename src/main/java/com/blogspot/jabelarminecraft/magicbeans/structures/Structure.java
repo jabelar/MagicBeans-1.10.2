@@ -301,7 +301,8 @@ public class Structure implements IStructure
             }
             else
             {
-                Utilities.setBlockStateFast(theWorld, theBlockPos, theBlock.getStateFromMeta(0), 3);
+//                Utilities.setBlockStateFast(theWorld, theBlockPos, theBlock.getStateFromMeta(0), 3);
+                theWorld.setBlockState(theBlockPos, theBlock.getStateFromMeta(0), 3);
             }
 //            if (theBlock.hasTileEntity())
 //            {
@@ -475,15 +476,20 @@ public class Structure implements IStructure
                     if (!(blockName.equals("minecraft:tripwire"))) // tripwire/string needs to be placed after other blocks
                     {
                         BlockPos thePos = new BlockPos(startX+indX, startY+indY, startZ+indZ);
+                        
                         // perform some block substitutions if interested
                         if (blockName.equals("minecraft:dirt") || blockName.equals("minecraft:grass"))
                         {
                             theWorld.setBlockState(thePos, MagicBeans.blockCloud.getDefaultState());
                         }
+                        else if (blockName.equals("minecraft:redstone_torch"))
+                        {
+                            theWorld.setBlockState(thePos, Blocks.TORCH.getDefaultState());
+                        }
                         else if (!(theWorld.getBlockState(thePos).getBlock() instanceof BlockMagicBeanStalk))
                         {
-                            Utilities.setBlockStateFast(theWorld, thePos, Block.getBlockFromName(blockName).getDefaultState(), 3);
-//                        	theWorld.setBlockState(thePos, Block.getBlockFromName(blockName).getDefaultState());
+//                            Utilities.setBlockStateFast(theWorld, thePos, Block.getBlockFromName(blockName).getDefaultState(), 3);
+                        	theWorld.setBlockState(thePos, Block.getBlockFromName(blockName).getDefaultState());
                         }
                     }
                 }
@@ -514,11 +520,22 @@ public class Structure implements IStructure
     
                 if (!(blockMetaArray[indX][indY][indZ]==0))
                 {
-                    Block theBlock = Block.getBlockFromName(blockNameArray[indX][indY][indZ]);
+                    String blockName = blockNameArray[indX][indY][indZ];
+                    Block theBlock = Block.getBlockFromName(blockName);
                     BlockPos thePos = new BlockPos(startX+indX, startY+indY, startZ+indZ);
                     int theMetadata = blockMetaArray[indX][indY][indZ];
-                    Utilities.setBlockStateFast(theWorld, thePos, theBlock.getStateFromMeta(theMetadata), 3);
-//                    theWorld.setBlockState(thePos, theBlock.getStateFromMeta(theMetadata));
+                    
+                    // perform some block substitutions if interested
+                    if (blockName.equals("minecraft:redstone_torch"))
+                    {
+                        theWorld.setBlockState(thePos, Blocks.TORCH.getStateFromMeta(theMetadata));
+                    }
+                    else if (!(theWorld.getBlockState(thePos).getBlock() instanceof BlockMagicBeanStalk))
+                    {
+//                      Utilities.setBlockStateFast(theWorld, thePos, theBlock.getStateFromMeta(theMetadata), 3);
+                        theWorld.setBlockState(thePos, theBlock.getStateFromMeta(theMetadata));
+                    }
+
                     if (theBlock.hasTileEntity())
                     {
                         customizeTileEntity(thePos);
@@ -564,8 +581,8 @@ public class Structure implements IStructure
                 {
                     BlockPos thePos = new BlockPos(startX+indX, startY+indY, startZ+indZ);
 
-                    Utilities.setBlockStateFast(theWorld, thePos, Block.getBlockFromName(blockName).getDefaultState(), 3);
-//                    theWorld.setBlockState(thePos, Block.getBlockFromName(blockName).getDefaultState());
+//                    Utilities.setBlockStateFast(theWorld, thePos, Block.getBlockFromName(blockName).getDefaultState(), 3);
+                    theWorld.setBlockState(thePos, Block.getBlockFromName(blockName).getDefaultState());
                 }            
             }
         }
