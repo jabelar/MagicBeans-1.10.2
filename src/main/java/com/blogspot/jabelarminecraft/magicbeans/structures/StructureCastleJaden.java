@@ -23,7 +23,9 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.util.math.BlockPos;
@@ -98,17 +100,20 @@ public class StructureCastleJaden extends Structure
 					if (chanceOfPotionType <= 3) // randomize potion
 					{
 						// fire resistance
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8297)); // was metadata 8259
+					    ItemStack thePotion = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.FIRE_RESISTANCE);
+						theTileEntity.setInventorySlotContents(slot, thePotion);
 					}
 					else if (chanceOfPotionType <= 8) 
 					{
 						// regeneration
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8289)); // was metadata 8257
+                        ItemStack thePotion = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.LONG_WATER_BREATHING);
+                        theTileEntity.setInventorySlotContents(slot, thePotion);
 					}
 					else
 					{
 						// water breathing
-						theTileEntity.setInventorySlotContents(slot, new ItemStack(Items.POTIONITEM, 1, 8290)); // was metadata 8269
+                        ItemStack thePotion = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.LONG_STRENGTH);
+                        theTileEntity.setInventorySlotContents(slot, thePotion);
 					}
 				}
 			}
