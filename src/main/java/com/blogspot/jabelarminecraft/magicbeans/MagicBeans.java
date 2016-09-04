@@ -56,11 +56,12 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.FMLEventChannel;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
-@Mod(modid = 
-      MagicBeans.MODID, 
+@Mod( modid = MagicBeans.MODID, 
       name = MagicBeans.MODNAME, 
       version = MagicBeans.MODVERSION,
-      guiFactory = "com.blogspot.jabelarminecraft."+MagicBeans.MODID+".gui.GuiFactory")
+      guiFactory = "com.blogspot.jabelarminecraft."+MagicBeans.MODID+".gui.GuiFactory",
+      acceptedMinecraftVersions = "[1.10.2]"
+      )
 public class MagicBeans
 {
     public static final String MODID = "magicbeans";
