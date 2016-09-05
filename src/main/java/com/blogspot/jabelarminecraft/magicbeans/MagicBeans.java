@@ -27,7 +27,6 @@ import com.blogspot.jabelarminecraft.magicbeans.blocks.BlockMagicBeanStalk;
 import com.blogspot.jabelarminecraft.magicbeans.items.ItemGoldenEgg;
 import com.blogspot.jabelarminecraft.magicbeans.items.ItemGoldenGooseMeat;
 import com.blogspot.jabelarminecraft.magicbeans.items.ItemMagicBeans;
-import com.blogspot.jabelarminecraft.magicbeans.items.MagicBeansMonsterPlacer;
 import com.blogspot.jabelarminecraft.magicbeans.materials.MaterialCloud;
 import com.blogspot.jabelarminecraft.magicbeans.proxy.CommonProxy;
 import com.blogspot.jabelarminecraft.magicbeans.structures.Structure;
@@ -113,12 +112,7 @@ public class MagicBeans
     // public final static ItemArmor leggingsOfSafeFalling = new ItemArmorSafeFalling("leggings_safe_falling", SAFEFALLINGLEATHER, "safe_falling", 2);
     public final static ItemArmorSafeFalling bootsOfSafeFalling = (ItemArmorSafeFalling) new ItemArmorSafeFalling(SAFEFALLINGLEATHER, 3, EntityEquipmentSlot.FEET).setUnlocalizedName("boots_safe_falling");
     public final static ItemGoldenGooseMeat goldenGooseMeat = new ItemGoldenGooseMeat(4, 1.2F, false);
-    
-    public final static MagicBeansMonsterPlacer spawnFamilyCow = new MagicBeansMonsterPlacer("family_cow",  0x4EF56D, 0xFCFC03);
-    public final static MagicBeansMonsterPlacer spawnGiant = new MagicBeansMonsterPlacer("giant", 0xDB9112, 0x0AC798);
-    public final static MagicBeansMonsterPlacer spawnMysteriousStranger = new MagicBeansMonsterPlacer("mysterious_stranger", 0x8C6620, 0xA100B3);
-    public final static MagicBeansMonsterPlacer spawnGoldenGoose = new MagicBeansMonsterPlacer("golden_goose", 0xFCF6A2, 0xF5E400);
-   
+       
     // instantiate structures
     // important to do this after blocks in case structure uses custom block
     public final static Structure structureCastle = new StructureCastleJaden();
