@@ -31,7 +31,6 @@ import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGiant;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGoldenEggThrown;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGoldenGoose;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityMysteriousStranger;
-import com.blogspot.jabelarminecraft.magicbeans.items.MagicBeansMonsterPlacer;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageGiantSpecialAttackToServer;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageGiveItemLeadToServer;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageGiveItemMagicBeansToServer;
@@ -44,7 +43,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
@@ -320,11 +318,12 @@ public class CommonProxy
         // or without spawn egg use
         // EntityRegistry.registerModEntity(parEntityClass, parEntityName, ++modEntityID, MagicBeans.instance, 80, 3, false);
 
-        registerModEntity(EntityGoldenGoose.class, "golden_goose");
+        registerModEntityWithEgg(EntityGoldenGoose.class, "golden_goose", 0xDAB606, 0xCEA301);
         registerModEntityFastTracking(EntityGoldenEggThrown.class, "golden_egg");
-        registerModEntity(EntityFamilyCow.class, "family_cow");
+        registerModEntityWithEgg(EntityFamilyCow.class, "family_cow", 0x82FD00, 0x457BA3);
+        // can't use egg for mysterious stranger as it is associated with the specific family cow that generates it
         registerModEntity(EntityMysteriousStranger.class, "mysterious_stranger");
-        registerModEntity(EntityGiant.class, "giant");
+        registerModEntityWithEgg(EntityGiant.class, "giant", 0x586F4B, 0xB57C68);
     }
  
     /**
@@ -344,23 +343,14 @@ public class CommonProxy
       */
      protected void registerModEntityFastTracking(Class parEntityClass, String parEntityName)
      {
-            EntityRegistry.registerModEntity(parEntityClass, parEntityName, ++modEntityID, MagicBeans.instance, 80, 10, true);
+         EntityRegistry.registerModEntity(parEntityClass, parEntityName, ++modEntityID, MagicBeans.instance, 80, 10, true);
      }
 
      public void registerModEntityWithEgg(Class parEntityClass, String parEntityName, 
               int parEggColor, int parEggSpotsColor)
     {
-        registerModEntity(parEntityClass, parEntityName);
-        registerSpawnEgg(parEntityName, parEggColor, parEggSpotsColor);
+         EntityRegistry.registerModEntity(parEntityClass, parEntityName, ++modEntityID, MagicBeans.instance, 80, 3, false, parEggColor, parEggSpotsColor);
     }
-
-     // can't use vanilla spawn eggs with entities registered with modEntityID, so use custom eggs.
-     // name passed must match entity name string
-     public void registerSpawnEgg(String parSpawnName, int parEggColor, int parEggSpotsColor)
-     {
-         Item itemSpawnEgg = new MagicBeansMonsterPlacer(parSpawnName, parEggColor, parEggSpotsColor);
-         GameRegistry.registerItem(itemSpawnEgg, itemSpawnEgg.getUnlocalizedName().substring(5));
-     }
 
      /**
       * Registers entity natural spawns
