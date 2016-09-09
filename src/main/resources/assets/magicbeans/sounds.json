@@ -4,12 +4,16 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/giant/fi_fi_fo_fum1",
-      "mob/giant/fi_fi_fo_fum2",
-      "mob/giant/fi_fi_fo_fum3",
-      "mob/giant/fi_fi_fo_fum4",
-      "mob/giant/groan1",
-      "mob/giant/groan2"
+      {
+         "type": "event",
+         "name": "mob.giant.living"
+      },
+      "magicbeans:mob/giant/fi_fi_fo_fum1",
+      "magicbeans:mob/giant/fi_fi_fo_fum2",
+      "magicbeans:mob/giant/fi_fi_fo_fum3",
+      "magicbeans:mob/giant/fi_fi_fo_fum4",
+      "magicbeans:mob/giant/groan1",
+      "magicbeans:mob/giant/groan2"
     ]
   },
   "mob.giant.death": 
@@ -17,7 +21,11 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/giant/groan3"
+      {
+         "type": "event",
+         "name": "mob.giant.death"
+      },
+      "magicbeans:mob/giant/groan3"
     ]
   },
   "mob.giant.hurt": 
@@ -25,7 +33,11 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/giant/giant_attack3"
+      {
+         "type": "event",
+         "name": "mob.giant.hurt"
+      },
+      "magicbeans:mob/giant/giant_attack3"
     ]
   },
     "mob.giant.attack": 
@@ -33,8 +45,12 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/giant/giant_attack1",
-      "mob/giant/giant_attack2"
+      {
+         "type": "event",
+         "name": "mob.giant.attack"
+      },
+      "magicbeans:mob/giant/giant_attack1",
+      "magicbeans:mob/giant/giant_attack2"
     ]
   },
   
@@ -43,9 +59,13 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/goose/goose_honk_once_1",
-      "mob/goose/goose_honk_once_2",
-      "mob/goose/goose_honk_once_3"
+      {
+         "type": "event",
+         "name": "mob.goose.honk"
+      },
+      "magicbeans:mob/goose/goose_honk_once_1",
+      "magicbeans:mob/goose/goose_honk_once_2",
+      "magicbeans:mob/goose/goose_honk_once_3"
     ]
   },
  "mob.goose.eat": 
@@ -53,9 +73,13 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/goose/eat1",
-      "mob/goose/eat2",
-      "mob/goose/eat3"
+      {
+         "type": "event",
+         "name": "mob.goose.eat"
+      },
+      "magicbeans:mob/goose/eat1",
+      "magicbeans:mob/goose/eat2",
+      "magicbeans:mob/goose/eat3"
     ]
   },
   "mob.goose.death": 
@@ -63,7 +87,11 @@
     "category": "neutral",
     "sounds": 
     [
-      "mob/goose/goose_honk_twice"
+      {
+         "type": "event",
+         "name": "mob.goose.death"
+      },
+      "magicbeans:mob/goose/goose_honk_twice"
     ]
   }
 }
