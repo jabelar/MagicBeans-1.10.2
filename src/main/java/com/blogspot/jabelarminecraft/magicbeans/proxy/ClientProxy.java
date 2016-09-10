@@ -19,6 +19,11 @@
 
 package com.blogspot.jabelarminecraft.magicbeans.proxy;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Sphere;
+
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.VersionChecker;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityFamilyCow;
@@ -26,21 +31,17 @@ import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGiant;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGoldenEggThrown;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGoldenGoose;
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityMysteriousStranger;
-import com.blogspot.jabelarminecraft.magicbeans.models.ModelGiant;
-import com.blogspot.jabelarminecraft.magicbeans.models.ModelGoldenGoose;
 import com.blogspot.jabelarminecraft.magicbeans.particles.ParticleFXMysterious;
-import com.blogspot.jabelarminecraft.magicbeans.renderers.RenderCowMagicBeans;
-import com.blogspot.jabelarminecraft.magicbeans.renderers.RenderGiant;
-import com.blogspot.jabelarminecraft.magicbeans.renderers.RenderGoldenEggThrown;
-import com.blogspot.jabelarminecraft.magicbeans.renderers.RenderGoldenGoose;
-import com.blogspot.jabelarminecraft.magicbeans.renderers.RenderMysteriousStranger;
+import com.blogspot.jabelarminecraft.magicbeans.renderers.factories.RenderFactoryFamilyCow;
+import com.blogspot.jabelarminecraft.magicbeans.renderers.factories.RenderFactoryGiant;
+import com.blogspot.jabelarminecraft.magicbeans.renderers.factories.RenderFactoryGoldenEggThrown;
+import com.blogspot.jabelarminecraft.magicbeans.renderers.factories.RenderFactoryGoldenGoose;
+import com.blogspot.jabelarminecraft.magicbeans.renderers.factories.RenderFactoryMysteriousStranger;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelCow;
-import net.minecraft.client.model.ModelVillager;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,10 +53,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Sphere;
 
 
 public class ClientProxy extends CommonProxy 
@@ -79,6 +76,9 @@ public class ClientProxy extends CommonProxy
         
 		// do common stuff
 		super.fmlLifeCycleEvent(event);
+		
+		// do client-specific stuff
+		registerEntityRenderers();
 
 	}
 	
@@ -98,7 +98,7 @@ public class ClientProxy extends CommonProxy
     	// create sphere call list
     	createSphereCallList();
     	
-        registerEntityRenderers();
+//        registerEntityRenderers(); // moved to pre-init since 1.9
     	registerItemRenderers();
     	registerBlockRenderers();
 	}
@@ -143,13 +143,20 @@ public class ClientProxy extends CommonProxy
 	public void registerEntityRenderers() 
     {
 		// the float parameter passed to the Render class is the shadow size for the entity
-      
-		RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
-	    RenderingRegistry.registerEntityRenderingHandler(EntityGoldenGoose.class, new RenderGoldenGoose(renderManager, new ModelGoldenGoose(), 0.5F)); // 0.5F is shadow size 
-	    RenderingRegistry.registerEntityRenderingHandler(EntityGoldenEggThrown.class, new RenderGoldenEggThrown(renderManager, MagicBeans.itemGoldenEgg)); 
-	    RenderingRegistry.registerEntityRenderingHandler(EntityFamilyCow.class, new RenderCowMagicBeans(renderManager, new ModelCow(), 0.5F)); 
-	    RenderingRegistry.registerEntityRenderingHandler(EntityMysteriousStranger.class, new RenderMysteriousStranger(renderManager, new ModelVillager(0.0F), 0.5F));    
-    	RenderingRegistry.registerEntityRenderingHandler(EntityGiant.class, new RenderGiant(renderManager, new ModelGiant(0.0F), 0.5F));  
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoldenGoose.class, new RenderFactoryGoldenGoose());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoldenEggThrown.class, new RenderFactoryGoldenEggThrown());
+        RenderingRegistry.registerEntityRenderingHandler(EntityFamilyCow.class, new RenderFactoryFamilyCow());
+        RenderingRegistry.registerEntityRenderingHandler(EntityMysteriousStranger.class, new RenderFactoryMysteriousStranger());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGiant.class, new RenderFactoryGiant());
+
+//        RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+//      // This works but is the deprecated method        
+//	    RenderingRegistry.registerEntityRenderingHandler(EntityGoldenGoose.class, new RenderGoldenGoose(renderManager, new ModelGoldenGoose(), 0.5F)); // 0.5F is shadow size 
+//	    RenderingRegistry.registerEntityRenderingHandler(EntityGoldenEggThrown.class, new RenderGoldenEggThrown(renderManager, MagicBeans.itemGoldenEgg)); 
+//	    RenderingRegistry.registerEntityRenderingHandler(EntityFamilyCow.class, new RenderCowMagicBeans(renderManager, new ModelCow(), 0.5F)); 
+//	    RenderingRegistry.registerEntityRenderingHandler(EntityMysteriousStranger.class, new RenderMysteriousStranger(renderManager, new ModelVillager(0.0F), 0.5F));    
+//    	RenderingRegistry.registerEntityRenderingHandler(EntityGiant.class, new RenderGiant(renderManager, new ModelGiant(0.0F), 0.5F));  
     }
 	
 	public void registerItemRenderers()

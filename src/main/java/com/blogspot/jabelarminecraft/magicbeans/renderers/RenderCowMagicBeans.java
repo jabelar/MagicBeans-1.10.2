@@ -16,6 +16,9 @@
 
 package com.blogspot.jabelarminecraft.magicbeans.renderers;
 
+import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
+import com.blogspot.jabelarminecraft.magicbeans.entities.EntityFamilyCow;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -24,9 +27,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
-import com.blogspot.jabelarminecraft.magicbeans.entities.EntityFamilyCow;
 
 /**
  * @author jabelar
@@ -37,7 +37,7 @@ public class RenderCowMagicBeans extends RenderLiving
 {
 
 	private final ResourceLocation[] cowMagicBeansTexture = new ResourceLocation[3];
-
+    
 	/**
 	 * @param parModelBase
 	 * @param parShadowSize
