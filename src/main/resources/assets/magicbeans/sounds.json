@@ -2,6 +2,7 @@
   "mob.giant.living": 
  {
     "category": "neutral",
+    "subtitle": "Giant mumbles",
     "sounds": 
     [
       {
@@ -19,6 +20,7 @@
   "mob.giant.death": 
  {
     "category": "neutral",
+    "subtitle": "Giant groans in mortal agony!",
     "sounds": 
     [
       {
@@ -31,6 +33,7 @@
   "mob.giant.hurt": 
  {
     "category": "neutral",
+    "subtitle": "Giant groans",
     "sounds": 
     [
       {
@@ -43,6 +46,7 @@
     "mob.giant.attack": 
  {
     "category": "neutral",
+    "subtitle": "Giant attacks",
     "sounds": 
     [
       {
@@ -57,7 +61,7 @@
  "mob.goose.honk": 
  {
     "category": "neutral",
-    "subtitle": "Honk!",
+    "subtitle": "Goose honks",
     "sounds": 
     [
       {
@@ -72,6 +76,7 @@
  "mob.goose.eat": 
  {
     "category": "neutral",
+    "subtitle": "Goose smacks its lips",
     "sounds": 
     [
       {
@@ -86,6 +91,7 @@
   "mob.goose.death": 
   {
     "category": "neutral",
+    "subtitle": "Goose honks in mortal agony!",
     "sounds": 
     [
       {

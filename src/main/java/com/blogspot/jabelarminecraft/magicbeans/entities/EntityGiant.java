@@ -81,7 +81,7 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     protected NBTTagCompound syncDataCompound = new NBTTagCompound();
     protected final BossInfoServer bossInfo = (new BossInfoServer(new TextComponentTranslation("entity.jabelar_giant.name", new Object[0]), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS));
     protected static final Predicate<EntityPlayerMP> VALID_PLAYER = Predicates.<EntityPlayerMP>and(EntitySelectors.IS_ALIVE, EntitySelectors.<EntityPlayerMP>withinRange(0.0D, 128.0D, 0.0D, 192.0D));
-    protected static final SoundEvent SOUND_EVENT_AMBIENT = null;
+    protected static final SoundEvent SOUND_EVENT_AMBIENT = new SoundEvent(new ResourceLocation(MagicBeans.MODID+":mob.giant.living"));
     protected static final SoundEvent SOUND_EVENT_HURT = new SoundEvent(new ResourceLocation(MagicBeans.MODID+":mob.giant.hurt"));
     protected static final SoundEvent SOUND_EVENT_DEATH = new SoundEvent(new ResourceLocation(MagicBeans.MODID+":mob.giant.death"));
 
@@ -470,7 +470,7 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     @Override
 	public int getTalkInterval()
     {
-        return 80; 
+        return 200; 
     }
 
     /**
