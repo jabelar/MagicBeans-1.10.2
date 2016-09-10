@@ -20,9 +20,8 @@
 package com.blogspot.jabelarminecraft.magicbeans;
 
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityFamilyCow;
-import com.blogspot.jabelarminecraft.magicbeans.gui.GuiConfig;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
-import net.minecraft.client.gui.GuiOptions;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityCow;
@@ -745,10 +744,10 @@ public class EventHandler
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
     public void onEvent(GuiOpenEvent event)
     {
-        if (event.getGui() instanceof GuiOptions)
-        {
-        	event.setGui(new GuiConfig(null));        
-        }
+//        if (event.getGui() instanceof GuiOptions)
+//        {
+//        	event.setGui(new GuiConfig(null));        
+//        }
     }
 
     @SideOnly(Side.CLIENT)

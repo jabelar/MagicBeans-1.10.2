@@ -23,6 +23,7 @@ import javax.annotation.Nullable;
 
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -267,6 +268,8 @@ public class EntityGoldenGoose extends EntityAnimal implements IEntity, IEntityA
     @Override
 	protected SoundEvent getAmbientSound()
     {
+        // DEBUG
+        System.out.println("getAmbientSound");
         return SOUND_EVENT_AMBIENT;
     }
 

@@ -57,6 +57,7 @@
  "mob.goose.honk": 
  {
     "category": "neutral",
+    "subtitle": "Honk!",
     "sounds": 
     [
       {
@@ -88,8 +89,9 @@
     "sounds": 
     [
       {
-         "type": "event",
-         "name": "mob.goose.death"
+        "type": "event",
+        "subtitle": "Honk!Honk!",
+        "name": "mob.goose.death"
       },
       "magicbeans:mob/goose/goose_honk_twice"
     ]

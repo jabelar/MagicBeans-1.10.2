@@ -27,6 +27,7 @@ import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Sets;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -469,7 +470,7 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     @Override
 	public int getTalkInterval()
     {
-        return 20*15; // quiet for at least 15 seconds
+        return 80; 
     }
 
     /**
@@ -478,6 +479,8 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     @Override
 	protected SoundEvent getAmbientSound()
     {
+        // DEBUG
+        System.out.println("getAmbientSound()");
         return SOUND_EVENT_AMBIENT;
     }
 
@@ -487,6 +490,8 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     @Override
 	protected SoundEvent getHurtSound()
     {
+        // DEBUG
+        System.out.println("getHurtSound()");
         return SOUND_EVENT_HURT;
     }
 
@@ -496,6 +501,8 @@ public class EntityGiant extends EntityCreature implements IEntity, IEntityAddit
     @Override
 	protected SoundEvent getDeathSound()
     {
+        // DEBUG
+        System.out.println("getDeathSound()");
         return SOUND_EVENT_DEATH;
     }
 
