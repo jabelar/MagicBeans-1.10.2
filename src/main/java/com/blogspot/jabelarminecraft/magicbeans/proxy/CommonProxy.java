@@ -39,6 +39,7 @@ import com.blogspot.jabelarminecraft.magicbeans.networking.MessageToClient;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageToServer;
 import com.blogspot.jabelarminecraft.magicbeans.tileentities.TileEntityMagicBeanStalk;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +49,6 @@ import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -415,7 +415,9 @@ public class CommonProxy
         MinecraftForge.ORE_GEN_BUS.register(new OreGenEventHandler());        
 
         // some events, especially tick, is handled on FML bus
-        FMLCommonHandler.instance().bus().register(new FMLEventHandler());
+        MinecraftForge.EVENT_BUS.register(new FMLEventHandler());
+        // deprecated as now combined on forge EVENT_BUS
+//        FMLCommonHandler.instance().bus().register(new FMLEventHandler());
     }
     
     /**
