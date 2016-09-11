@@ -254,7 +254,6 @@ public class CommonProxy
         GameRegistry.register(MagicBeans.itemGoldenEgg);
         GameRegistry.register(MagicBeans.magicBeans);
         GameRegistry.register(MagicBeans.goldenGooseMeat);
-        MagicBeans.bootsOfSafeFalling.setRegistryName("boots_safe_falling");
         GameRegistry.register(MagicBeans.bootsOfSafeFalling);
 
         // Deprecated in 1.9
