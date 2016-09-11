@@ -31,10 +31,11 @@ import com.blogspot.jabelarminecraft.magicbeans.materials.MaterialCloud;
 import com.blogspot.jabelarminecraft.magicbeans.proxy.CommonProxy;
 import com.blogspot.jabelarminecraft.magicbeans.structures.Structure;
 import com.blogspot.jabelarminecraft.magicbeans.structures.StructureCastleJaden;
+import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.text.TextFormatting;
@@ -104,14 +105,14 @@ public class MagicBeans
 
     // instantiate items
 	// important to do this after blocks where item is associate with custom block
-    public final static ItemGoldenEgg itemGoldenEgg = new ItemGoldenEgg();
-    public final static Item magicBeans = new ItemMagicBeans();
+    public final static ItemGoldenEgg itemGoldenEgg = (ItemGoldenEgg) Utilities.setItemName(new ItemGoldenEgg(), "golden_egg");
+    public final static ItemMagicBeans magicBeans = (ItemMagicBeans) Utilities.setItemName(new ItemMagicBeans(), "magicbeans");
     // public final static ItemArmor bootsOfSafeFalling = (ItemArmor) new ItemArmor(ItemArmor.ArmorMaterial.CLOTH, 1, 3).setUnlocalizedName("bootsofsafefalling").setTextureName("minecraft:chainmail_boots");
     // public final static ItemArmor helmetOfSafeFalling = new ItemArmorSafeFalling("helmet_safe_falling", SAFEFALLINGLEATHER, "safe_falling", 0);
     // public final static ItemArmor chestplateOfSafeFalling = new ItemArmorSafeFalling("chestplate_safe_falling", SAFEFALLINGLEATHER, "safe_falling", 1);
     // public final static ItemArmor leggingsOfSafeFalling = new ItemArmorSafeFalling("leggings_safe_falling", SAFEFALLINGLEATHER, "safe_falling", 2);
     public final static ItemArmorSafeFalling bootsOfSafeFalling = (ItemArmorSafeFalling) new ItemArmorSafeFalling(SAFEFALLINGLEATHER, 3, EntityEquipmentSlot.FEET).setUnlocalizedName("boots_safe_falling");
-    public final static ItemGoldenGooseMeat goldenGooseMeat = new ItemGoldenGooseMeat(4, 1.2F, false);
+    public final static ItemGoldenGooseMeat goldenGooseMeat = (ItemGoldenGooseMeat) Utilities.setItemName(new ItemGoldenGooseMeat(4, 1.2F, false), "golden_goose_meat");
        
     // instantiate structures
     // important to do this after blocks in case structure uses custom block

@@ -20,11 +20,13 @@ import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.entities.IEntity;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageSyncEntityToClient;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageSyncEntityToServer;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -41,6 +43,19 @@ import net.minecraftforge.common.util.BlockSnapshot;
  */
 public class Utilities 
 {
+    
+    /*
+     * Item Utilities
+     */
+    
+    // Need to call this on item instance prior to registering the item
+    // chainable
+    public static Item setItemName(Item parItem, String parItemName) {
+        parItem.setRegistryName(parItemName);
+        parItem.setUnlocalizedName(parItemName);
+        return parItem;
+       } 
+    
 	/*
 	 * Text Utilities
 	 */

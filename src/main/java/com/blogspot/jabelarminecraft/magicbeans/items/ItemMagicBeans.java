@@ -25,7 +25,6 @@ import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextComponentTranslation;
 
 
 public class ItemMagicBeans extends ItemSeedFoodMagicBeans 
@@ -33,14 +32,15 @@ public class ItemMagicBeans extends ItemSeedFoodMagicBeans
 	public ItemMagicBeans() 
     {
         super(1, 0.3F, MagicBeans.blockMagicBeanStalk, Blocks.FARMLAND);
-        setRegistryName("magicbeans");
-        setUnlocalizedName("magicbeans");
+        // moved the naming to the instantiation
+//        setRegistryName("magicbeans");
+//        setUnlocalizedName("magicbeans");
         setCreativeTab(CreativeTabs.MATERIALS);
     }
     
     @Override
     public String getItemStackDisplayName(ItemStack parItemStack) 
     {
-        return new TextComponentTranslation(Utilities.stringToRainbow(getUnlocalizedNameInefficiently(parItemStack) + ".name").trim(), new Object[0]).getFormattedText();
+        return Utilities.stringToRainbow("Magic Beans");
     }
 }

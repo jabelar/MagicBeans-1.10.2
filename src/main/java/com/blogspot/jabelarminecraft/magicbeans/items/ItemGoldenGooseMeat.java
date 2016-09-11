@@ -38,8 +38,9 @@ public class ItemGoldenGooseMeat extends ItemFood
     {
         super(p_i45341_1_, p_i45341_2_, p_i45341_3_);
         setAlwaysEdible();
-        setRegistryName("golden_goose_meat");
-        setUnlocalizedName("golden_goose_meat");
+        // moved naming to the instantiation
+//        setRegistryName("golden_goose_meat");
+//        setUnlocalizedName("golden_goose_meat");
     }
 
     @Override

@@ -41,8 +41,9 @@ public class ItemGoldenEgg extends Item
 
     public ItemGoldenEgg() 
     {
-        setRegistryName("golden_egg");
-        setUnlocalizedName("golden_egg");
+        // moved naming to the instantiation
+//        setRegistryName("golden_egg");
+//        setUnlocalizedName("golden_egg");
     	maxStackSize = 16; // same as regular egg
         setCreativeTab(CreativeTabs.MATERIALS);
     }
