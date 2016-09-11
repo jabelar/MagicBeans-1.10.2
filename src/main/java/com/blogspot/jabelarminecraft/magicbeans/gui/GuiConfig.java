@@ -18,6 +18,7 @@ package com.blogspot.jabelarminecraft.magicbeans.gui;
 
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 /**
  * @author jabelar
  *
@@ -26,13 +27,13 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.config.GuiMessageDialog;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.PostConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
@@ -76,9 +77,11 @@ public class GuiConfig extends net.minecraftforge.fml.client.config.GuiConfig
                     if (Loader.isModLoaded(modID))
                     {
                         ConfigChangedEvent event = new OnConfigChangedEvent(modID, configID, isWorldRunning, requiresMcRestart);
-                        FMLCommonHandler.instance().bus().post(event);
+                        MinecraftForge.EVENT_BUS.post(event);
+//                        FMLCommonHandler.instance().bus().post(event); // Deprecated
                         if (!event.getResult().equals(Result.DENY))
-                            FMLCommonHandler.instance().bus().post(new PostConfigChangedEvent(modID, configID, isWorldRunning, requiresMcRestart));
+                            MinecraftForge.EVENT_BUS.post(new PostConfigChangedEvent(modID, configID, isWorldRunning, requiresMcRestart));
+//                            FMLCommonHandler.instance().bus().post(new PostConfigChangedEvent(modID, configID, isWorldRunning, requiresMcRestart));
                         
                         if (requiresMcRestart)
                         {

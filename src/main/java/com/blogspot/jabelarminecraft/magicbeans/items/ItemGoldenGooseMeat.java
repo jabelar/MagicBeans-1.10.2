@@ -17,6 +17,7 @@
 package com.blogspot.jabelarminecraft.magicbeans.items;
 
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.EnumRarity;
@@ -37,6 +38,7 @@ public class ItemGoldenGooseMeat extends ItemFood
     {
         super(p_i45341_1_, p_i45341_2_, p_i45341_3_);
         setAlwaysEdible();
+        setRegistryName("golden_goose_meat");
         setUnlocalizedName("golden_goose_meat");
     }
 

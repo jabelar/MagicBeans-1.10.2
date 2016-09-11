@@ -250,17 +250,24 @@ public class CommonProxy
     {
         // DEBUG
         System.out.println("Registering items");
+        
+        GameRegistry.register(MagicBeans.itemGoldenEgg);
+        GameRegistry.register(MagicBeans.magicBeans);
+        GameRegistry.register(MagicBeans.goldenGooseMeat);
+        MagicBeans.bootsOfSafeFalling.setRegistryName("boots_safe_falling");
+        GameRegistry.register(MagicBeans.bootsOfSafeFalling);
 
-        GameRegistry.registerItem(MagicBeans.itemGoldenEgg, MagicBeans.itemGoldenEgg.getUnlocalizedName().substring(5));
-        GameRegistry.registerItem(MagicBeans.magicBeans, MagicBeans.magicBeans.getUnlocalizedName().substring(5));
-        GameRegistry.registerItem(MagicBeans.goldenGooseMeat, MagicBeans.goldenGooseMeat.getUnlocalizedName().substring(5));
+        // Deprecated in 1.9
+//        GameRegistry.registerItem(MagicBeans.itemGoldenEgg, MagicBeans.itemGoldenEgg.getUnlocalizedName().substring(5));
+//        GameRegistry.registerItem(MagicBeans.magicBeans, MagicBeans.magicBeans.getUnlocalizedName().substring(5));
+//        GameRegistry.registerItem(MagicBeans.goldenGooseMeat, MagicBeans.goldenGooseMeat.getUnlocalizedName().substring(5));
 
         // GameRegistry.registerItem(MagicBeans.helmetOfSafeFalling, MagicBeans.helmetOfSafeFalling.getName());
         // GameRegistry.registerItem(MagicBeans.chestplateOfSafeFalling, MagicBeans.chestplateOfSafeFalling.getName());
         // GameRegistry.registerItem(MagicBeans.leggingsOfSafeFalling, MagicBeans.leggingsOfSafeFalling.getName());
-        GameRegistry.registerItem(MagicBeans.bootsOfSafeFalling, MagicBeans.bootsOfSafeFalling.getUnlocalizedName().substring(5));
+//        GameRegistry.registerItem(MagicBeans.bootsOfSafeFalling, MagicBeans.bootsOfSafeFalling.getUnlocalizedName().substring(5));
     }
-    
+     
     /**
      * Registers tile entities
      */

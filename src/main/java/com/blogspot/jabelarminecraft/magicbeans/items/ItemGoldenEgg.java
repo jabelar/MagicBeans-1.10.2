@@ -21,6 +21,7 @@ package com.blogspot.jabelarminecraft.magicbeans.items;
 
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityGoldenEggThrown;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -40,6 +41,7 @@ public class ItemGoldenEgg extends Item
 
     public ItemGoldenEgg() 
     {
+        setRegistryName("golden_egg");
         setUnlocalizedName("golden_egg");
     	maxStackSize = 16; // same as regular egg
         setCreativeTab(CreativeTabs.MATERIALS);

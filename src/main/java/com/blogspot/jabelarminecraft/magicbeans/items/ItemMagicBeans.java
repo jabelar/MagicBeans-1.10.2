@@ -21,6 +21,7 @@ package com.blogspot.jabelarminecraft.magicbeans.items;
 
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,7 @@ public class ItemMagicBeans extends ItemSeedFoodMagicBeans
 	public ItemMagicBeans() 
     {
         super(1, 0.3F, MagicBeans.blockMagicBeanStalk, Blocks.FARMLAND);
+        setRegistryName("magicbeans");
         setUnlocalizedName("magicbeans");
         setCreativeTab(CreativeTabs.MATERIALS);
     }
