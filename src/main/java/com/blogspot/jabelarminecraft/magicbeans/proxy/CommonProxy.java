@@ -227,9 +227,14 @@ public class CommonProxy
      */
     public void registerBlocks()
     {
-        //example: GameRegistry.registerBlock(blockTomato, "tomatoes");
-        GameRegistry.registerBlock(MagicBeans.blockMagicBeanStalk, MagicBeans.blockMagicBeanStalk.getUnlocalizedName().substring(5));
-        GameRegistry.registerBlock(MagicBeans.blockCloud, MagicBeans.blockCloud.getUnlocalizedName().substring(5));
+        // DEBUG
+        System.out.println("Registering blocks");
+        
+        GameRegistry.register(MagicBeans.blockMagicBeanStalk);
+        GameRegistry.register(MagicBeans.blockCloud);
+        // Deprecated
+//        GameRegistry.registerBlock(MagicBeans.blockMagicBeanStalk, MagicBeans.blockMagicBeanStalk.getUnlocalizedName().substring(5));
+//        GameRegistry.registerBlock(MagicBeans.blockCloud, MagicBeans.blockCloud.getUnlocalizedName().substring(5));
      }
 
     /** 

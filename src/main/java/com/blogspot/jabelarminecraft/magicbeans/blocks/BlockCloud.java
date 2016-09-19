@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.EnumPushReaction;
@@ -51,7 +52,7 @@ public class BlockCloud extends Block
         System.out.println("BlockCloud constructor");
         
         // override default values of Block, where appropriate
-        setUnlocalizedName("magicbeanscloud");
+//        setUnlocalizedName("magicbeanscloud");
         setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         blockSoundType = SoundType.SNOW;
         blockParticleGravity = 1.0F;

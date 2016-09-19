@@ -25,6 +25,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 // import net.minecraft.client.renderer.texture.IIconRegister;
@@ -49,7 +50,7 @@ public class BlockMagicBeanStalk extends BlockCropMagicBeans // implements ITile
     	System.out.println("BlockMagicBeanStalk constructor()");
 
     	// Basic block setup
-        setUnlocalizedName("magicbeanstalk");
+//        setUnlocalizedName("magicbeanstalk");
     }
     
     // identifies what food (ItemFood or ItemSeedFood type) is harvested from this

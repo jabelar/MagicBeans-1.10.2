@@ -33,7 +33,6 @@ import com.blogspot.jabelarminecraft.magicbeans.structures.Structure;
 import com.blogspot.jabelarminecraft.magicbeans.structures.StructureCastleJaden;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -101,8 +100,8 @@ public class MagicBeans
     
     // instantiate blocks
     // need to instantiate beanstalk block before item as the item constructor associates with block
-    public final static Block blockMagicBeanStalk = new BlockMagicBeanStalk();
-	public final static Block blockCloud = new BlockCloud();
+    public final static BlockMagicBeanStalk blockMagicBeanStalk = (BlockMagicBeanStalk) Utilities.setBlockName(new BlockMagicBeanStalk(), "magicbeanstalk");
+	public final static BlockCloud blockCloud = (BlockCloud) Utilities.setBlockName(new BlockCloud(), "magicbeanscloud");
 
     // instantiate items
 	// important to do this after blocks where item is associate with custom block

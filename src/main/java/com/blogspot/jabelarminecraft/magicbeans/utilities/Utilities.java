@@ -56,6 +56,13 @@ public class Utilities
         return parItem;
        } 
     
+    // Need to call this on block instance prior to registering the block
+    // chainable
+    public static Block setBlockName(Block parBlock, String parBlockName) {
+        parBlock.setRegistryName(parBlockName);
+        parBlock.setUnlocalizedName(parBlockName);
+        return parBlock;
+       }     
 	/*
 	 * Text Utilities
 	 */
