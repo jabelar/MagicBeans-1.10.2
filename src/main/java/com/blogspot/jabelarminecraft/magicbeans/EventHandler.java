@@ -21,7 +21,6 @@ package com.blogspot.jabelarminecraft.magicbeans;
 
 import com.blogspot.jabelarminecraft.magicbeans.entities.EntityFamilyCow;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.passive.EntityCow;
@@ -31,7 +30,9 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -112,12 +113,31 @@ import net.minecraftforge.fluids.FluidEvent.FluidFillingEvent;
 import net.minecraftforge.fluids.FluidEvent.FluidMotionEvent;
 import net.minecraftforge.fluids.FluidEvent.FluidSpilledEvent;
 import net.minecraftforge.fluids.FluidRegistry.FluidRegisterEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.PostConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.MouseInputEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
+@Mod.EventBusSubscriber
 public class EventHandler 
 {
     /*
@@ -125,25 +145,25 @@ public class EventHandler
      */    
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ForceChunkEvent event)
+    public static void onEvent(ForceChunkEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(UnforceChunkEvent event)
+    public static void onEvent(UnforceChunkEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(AnvilUpdateEvent event)
+    public static void onEvent(AnvilUpdateEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(CommandEvent event)
+    public static void onEvent(CommandEvent event)
     {
         // DEBUG
         System.out.println("Your wish is my command");
@@ -151,7 +171,7 @@ public class EventHandler
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ServerChatEvent event)
+    public static void onEvent(ServerChatEvent event)
     {
         
     }
@@ -161,7 +181,7 @@ public class EventHandler
      */
         
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PotionBrewEvent event)
+    public static void onEvent(PotionBrewEvent event)
     {
         
     }
@@ -171,13 +191,13 @@ public class EventHandler
      */
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EnteringChunk event)
+    public static void onEvent(EnteringChunk event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityConstructing event)
+    public static void onEvent(EntityConstructing event)
     {
 //        // Register extended entity properties
 //
@@ -191,7 +211,7 @@ public class EventHandler
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityJoinWorldEvent event)
+    public static void onEvent(EntityJoinWorldEvent event)
     {
     	World world = event.getWorld();
     	if (world.isRemote)
@@ -214,13 +234,13 @@ public class EventHandler
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityStruckByLightningEvent event)
+    public static void onEvent(EntityStruckByLightningEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlaySoundAtEntityEvent event)
+    public static void onEvent(PlaySoundAtEntityEvent event)
     {
         
     }
@@ -230,13 +250,13 @@ public class EventHandler
      */
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ItemExpireEvent event)
+    public static void onEvent(ItemExpireEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ItemTossEvent event)
+    public static void onEvent(ItemTossEvent event)
     {
         
     }
@@ -246,44 +266,44 @@ public class EventHandler
      */
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingJumpEvent event)
+    public static void onEvent(LivingJumpEvent event)
     {
 
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingUpdateEvent event)
+    public static void onEvent(LivingUpdateEvent event)
     {
         // This event has an Entity variable, access it like this: event.getEntity();
         // and can check if for player with if (event.getEntity() instanceof EntityPlayer)
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EnderTeleportEvent event)
+    public static void onEvent(EnderTeleportEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingAttackEvent event)
+    public static void onEvent(LivingAttackEvent event)
     {
 
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingDeathEvent event)
+    public static void onEvent(LivingDeathEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingDropsEvent event)
+    public static void onEvent(LivingDropsEvent event)
     {
 
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingFallEvent event)
+    public static void onEvent(LivingFallEvent event)
     {
     	if (!event.getEntityLiving().worldObj.isRemote && event.getEntityLiving() instanceof EntityPlayer)
     	{    		
@@ -303,43 +323,43 @@ public class EventHandler
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingHurtEvent event)
+    public static void onEvent(LivingHurtEvent event)
     {
 
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingPackSizeEvent event)
-    {
-        
-    }
-
-    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(LivingSetAttackTargetEvent event)
+    public static void onEvent(LivingPackSizeEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ZombieEvent event)
+    public static void onEvent(LivingSetAttackTargetEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public static void onEvent(ZombieEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(CheckSpawn event)
+    public static void onEvent(CheckSpawn event)
     {  	
 
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(SpecialSpawn event)
+    public static void onEvent(SpecialSpawn event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(AllowDespawn event)
+    public static void onEvent(AllowDespawn event)
     {
         
     }
@@ -349,25 +369,25 @@ public class EventHandler
      */
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(BreakSpeed event)
+    public static void onEvent(BreakSpeed event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(Clone event)
+    public static void onEvent(Clone event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(HarvestCheck event)
+    public static void onEvent(HarvestCheck event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(NameFormat event)
+    public static void onEvent(NameFormat event)
     {
         if (event.getUsername().equalsIgnoreCase("jnaejnae"))
         {
@@ -388,31 +408,31 @@ public class EventHandler
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ArrowLooseEvent event)
+    public static void onEvent(ArrowLooseEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ArrowNockEvent event)
+    public static void onEvent(ArrowNockEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(AttackEntityEvent event)
+    public static void onEvent(AttackEntityEvent event)
     {
 
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(BonemealEvent event)
+    public static void onEvent(BonemealEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityInteractSpecific event)
+    public static void onEvent(EntityInteractSpecific event)
     {
 		World world = event.getWorld();
 		if (world.isRemote)
@@ -477,97 +497,97 @@ public class EventHandler
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityInteract event)
+    public static void onEvent(EntityInteract event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(EntityItemPickupEvent event)
+    public static void onEvent(EntityItemPickupEvent event)
     {
 
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FillBucketEvent event)
+    public static void onEvent(FillBucketEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ItemTooltipEvent event)
+    public static void onEvent(ItemTooltipEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerDestroyItemEvent event)
+    public static void onEvent(PlayerDestroyItemEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerDropsEvent event)
+    public static void onEvent(PlayerDropsEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerFlyableFallEvent event)
+    public static void onEvent(PlayerFlyableFallEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerInteractEvent event)
+    public static void onEvent(PlayerInteractEvent event)
     {
 
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerContainerEvent event)
+    public static void onEvent(PlayerContainerEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerPickupXpEvent event)
+    public static void onEvent(PlayerPickupXpEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(PlayerSleepInBedEvent event)
+    public static void onEvent(PlayerSleepInBedEvent event)
     {
         
     }
     
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(PlayerUseItemEvent.Finish event)
+//    public static void onEvent(PlayerUseItemEvent.Finish event)
 //    {
 //        
 //    }
 //    
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(PlayerUseItemEvent.Start event)
+//    public static void onEvent(PlayerUseItemEvent.Start event)
 //    {
 //    	
 //    }
 //    
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(PlayerUseItemEvent.Stop event)
+//    public static void onEvent(PlayerUseItemEvent.Stop event)
 //    {
 //        
 //    }
 //    
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(PlayerUseItemEvent.Tick event)
+//    public static void onEvent(PlayerUseItemEvent.Tick event)
 //    {
 //        
 //    }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(UseHoeEvent event)
+    public static void onEvent(UseHoeEvent event)
     {
         
     }
@@ -577,19 +597,19 @@ public class EventHandler
      */
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(MinecartCollisionEvent event)
+    public static void onEvent(MinecartCollisionEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(MinecartInteractEvent event)
+    public static void onEvent(MinecartInteractEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(MinecartUpdateEvent event)
+    public static void onEvent(MinecartUpdateEvent event)
     {
         
     }
@@ -599,91 +619,91 @@ public class EventHandler
      */
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(WorldEvent.Load event)
+    public static void onEvent(WorldEvent.Load event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(WorldEvent.PotentialSpawns event)
+    public static void onEvent(WorldEvent.PotentialSpawns event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(WorldEvent.Unload event)
+    public static void onEvent(WorldEvent.Unload event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(BlockEvent event)
+    public static void onEvent(BlockEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(BlockEvent.BreakEvent event)
+    public static void onEvent(BlockEvent.BreakEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(BlockEvent.HarvestDropsEvent event)
+    public static void onEvent(BlockEvent.HarvestDropsEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkEvent event)
+    public static void onEvent(ChunkEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkEvent.Save event)
+    public static void onEvent(ChunkEvent.Save event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkEvent.Unload event)
+    public static void onEvent(ChunkEvent.Unload event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkDataEvent event)
+    public static void onEvent(ChunkDataEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkDataEvent.Load event)
+    public static void onEvent(ChunkDataEvent.Load event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkDataEvent.Save event)
+    public static void onEvent(ChunkDataEvent.Save event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkWatchEvent event)
+    public static void onEvent(ChunkWatchEvent event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkWatchEvent.Watch event)
+    public static void onEvent(ChunkWatchEvent.Watch event)
     {
         
     }
     
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ChunkWatchEvent.UnWatch event)
+    public static void onEvent(ChunkWatchEvent.UnWatch event)
     {
         
     }
@@ -695,28 +715,28 @@ public class EventHandler
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(ClientChatReceivedEvent event)
+    public static void onEvent(ClientChatReceivedEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(DrawBlockHighlightEvent event)
+    public static void onEvent(DrawBlockHighlightEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderFogEvent event)
+    public static void onEvent(RenderFogEvent event)
     {
         
     }
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FogDensity event)
+    public static void onEvent(FogDensity event)
     {
     	if(true) 
     	{
@@ -728,21 +748,21 @@ public class EventHandler
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FogColors event)
+    public static void onEvent(FogColors event)
     {
 
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FOVUpdateEvent event)
+    public static void onEvent(FOVUpdateEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(GuiOpenEvent event)
+    public static void onEvent(GuiOpenEvent event)
     {
 //        if (event.getGui() instanceof GuiOptions)
 //        {
@@ -752,42 +772,42 @@ public class EventHandler
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(GuiScreenEvent.ActionPerformedEvent event)
+    public static void onEvent(GuiScreenEvent.ActionPerformedEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(GuiScreenEvent.DrawScreenEvent event)
+    public static void onEvent(GuiScreenEvent.DrawScreenEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(GuiScreenEvent.InitGuiEvent event)
+    public static void onEvent(GuiScreenEvent.InitGuiEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(MouseEvent event)
+    public static void onEvent(MouseEvent event)
     {
 
     }
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderGameOverlayEvent event)
+    public static void onEvent(RenderGameOverlayEvent event)
     {
         
     }
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderGameOverlayEvent.Chat event)
+    public static void onEvent(RenderGameOverlayEvent.Chat event)
     {
     	// This event actually extends Pre
 
@@ -795,14 +815,14 @@ public class EventHandler
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderGameOverlayEvent.Post event)
+    public static void onEvent(RenderGameOverlayEvent.Post event)
     {
         
     }
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderGameOverlayEvent.Pre event)
+    public static void onEvent(RenderGameOverlayEvent.Pre event)
     {
     	// you can check which elements of the GUI are being rendered
     	// by checking event.type against things like ElementType.CHAT, ElementType.CROSSHAIRS, etc.
@@ -811,7 +831,7 @@ public class EventHandler
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderGameOverlayEvent.Text event)
+    public static void onEvent(RenderGameOverlayEvent.Text event)
     {
     	// This event actually extends Pre
         
@@ -819,77 +839,77 @@ public class EventHandler
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderHandEvent event)
+    public static void onEvent(RenderHandEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderLivingEvent.Post event)
+    public static void onEvent(RenderLivingEvent.Post event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderLivingEvent.Pre event)
+    public static void onEvent(RenderLivingEvent.Pre event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderPlayerEvent.Post event)
+    public static void onEvent(RenderPlayerEvent.Post event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderPlayerEvent.Pre event)
+    public static void onEvent(RenderPlayerEvent.Pre event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderPlayerEvent.SetArmorModel event)
+    public static void onEvent(RenderPlayerEvent.SetArmorModel event)
     {
         
     }
 
 //    @SideOnly(Side.CLIENT)
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(RenderWorldEvent.Post event)
+//    public static void onEvent(RenderWorldEvent.Post event)
 //    {
 //        
 //    }
 //
 //    @SideOnly(Side.CLIENT)
 //    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-//    public void onEvent(RenderWorldEvent.Pre event)
+//    public static void onEvent(RenderWorldEvent.Pre event)
 //    {
 //        
 //    }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(RenderWorldLastEvent event)
+    public static void onEvent(RenderWorldLastEvent event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(TextureStitchEvent.Post event)
+    public static void onEvent(TextureStitchEvent.Post event)
     {
         
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(TextureStitchEvent.Pre event)
+    public static void onEvent(TextureStitchEvent.Pre event)
     {
         
     }
@@ -899,43 +919,43 @@ public class EventHandler
      */
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidEvent event)
+    public static void onEvent(FluidEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidContainerRegisterEvent event)
+    public static void onEvent(FluidContainerRegisterEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidDrainingEvent event)
+    public static void onEvent(FluidDrainingEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidFillingEvent event)
+    public static void onEvent(FluidFillingEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidMotionEvent event)
+    public static void onEvent(FluidMotionEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidRegisterEvent event)
+    public static void onEvent(FluidRegisterEvent event)
     {
         
     }
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(FluidSpilledEvent event)
+    public static void onEvent(FluidSpilledEvent event)
     {
         
     }
@@ -945,13 +965,13 @@ public class EventHandler
      */
 
     @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-    public void onEvent(OreRegisterEvent event)
+    public static void onEvent(OreRegisterEvent event)
     {
         
     }
     
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-	public void onEvent(PopulateChunkEvent event)
+	public static void onEvent(PopulateChunkEvent event)
 	{
 		
 	}
@@ -959,7 +979,7 @@ public class EventHandler
 	// for some reason the PopulateChunkEvents are fired on the main EVENT_BUT
 	// even though they are in the terraingen package
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-	public void onEvent(PopulateChunkEvent.Populate event)
+	public static void onEvent(PopulateChunkEvent.Populate event)
 	{
 		
 	}
@@ -967,7 +987,7 @@ public class EventHandler
 	// for some reason the PopulateChunkEvents are fired on the main EVENT_BUT
 	// even though they are in the terraingen package
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-	public void onEvent(PopulateChunkEvent.Post event)
+	public static void onEvent(PopulateChunkEvent.Post event)
 	{ 
 		
 	}
@@ -975,8 +995,163 @@ public class EventHandler
 	// for some reason the PopulateChunkEvents are fired on the main EVENT_BUT
 	// even though they are in the terraingen package
 	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
-	public void onEvent(PopulateChunkEvent.Pre event)
+	public static void onEvent(PopulateChunkEvent.Pre event)
 	{
 	}
+	
+	/*
+     * The following events used to be registered on separate FML event bus, but now mereged in latest Forge versions.
+     */
+    
+    /*
+     * Game input events
+     */
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(InputEvent event)
+    {
+        
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(KeyInputEvent event)
+    {
+
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(MouseInputEvent event)
+    {
+
+    }
+    
+    /*
+     * Player events
+     */
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(ItemCraftedEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(ItemPickupEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(ItemSmeltedEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerChangedDimensionEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerLoggedInEvent event)
+    {
+        if (event.player.getDisplayName().equals("MistMaestro"))
+        {
+            // DEBUG
+            System.out.println("Welcome Master!");
+        }
+        
+        // DEBUG
+        System.out.println("MagicBeansWorldData hasCastleSpawned ="+ModWorldData.get(event.player.worldObj).getHasCastleSpawned()+
+                ", familyCowHasGivenLead ="+ModWorldData.get(event.player.worldObj).getFamilyCowHasGivenLead());
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerLoggedOutEvent event)
+    {
+        // DEBUG
+        System.out.println("Player logged out");
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerRespawnEvent event)
+    {
+        // DEBUG
+        System.out.println("The memories of past existences are but glints of light.");
+        
+    }
+
+    /*
+     * Tick events
+     */
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(ClientTickEvent event) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
+    { 
+
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PlayerTickEvent event)
+    {
+        
+        EntityPlayer thePlayer = event.player;
+        World world = thePlayer.worldObj;
+        
+        if (!MagicBeans.haveWarnedVersionOutOfDate && world.isRemote && !MagicBeans.versionChecker.isLatestVersion())
+        {
+            ClickEvent versionCheckChatClickEvent = new ClickEvent(ClickEvent.Action.OPEN_URL, "http://jabelarminecraft.blogspot.com");
+            Style clickableChatStyle = new Style().setClickEvent(versionCheckChatClickEvent);
+            TextComponentString versionWarningChatComponent = new TextComponentString("Your Magic Beans Mod is not latest version!  Click here to update.");
+            versionWarningChatComponent.setStyle(clickableChatStyle);
+            thePlayer.addChatMessage(versionWarningChatComponent);
+            MagicBeans.haveWarnedVersionOutOfDate = true;
+        }
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(RenderTickEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(ServerTickEvent event)
+    {
+        
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(OnConfigChangedEvent eventArgs) 
+    {
+        // DEBUG
+        System.out.println("OnConfigChangedEvent");
+        if(eventArgs.getModID().equals(MagicBeans.MODID))
+        {
+            System.out.println("Syncing config for mod ="+eventArgs.getModID());
+            MagicBeans.config.save();
+            MagicBeans.proxy.syncConfig();
+        }
+    }
+
+    @SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+    public void onEvent(PostConfigChangedEvent eventArgs) 
+    {
+        // useful for doing something if another mod's config has changed
+        // if(eventArgs.modID.equals(MagicBeans.MODID))
+        // {
+        //      // do whatever here
+        // }
+    }
 }
 
