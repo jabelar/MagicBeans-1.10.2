@@ -62,7 +62,8 @@ public class Utilities
         parBlock.setRegistryName(parBlockName);
         parBlock.setUnlocalizedName(parBlockName);
         return parBlock;
-       }     
+       }   
+    
 	/*
 	 * Text Utilities
 	 */
@@ -207,6 +208,7 @@ public class Utilities
 	* @param word The word to search
 	* @return The index of the first vowel
 	*/
+	
 	private static int firstVowel(String word) 
 	{
 		word = word.toLowerCase();

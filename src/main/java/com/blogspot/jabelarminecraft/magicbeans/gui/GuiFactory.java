@@ -48,9 +48,12 @@ public class GuiFactory implements IModGuiFactory
     	setElements.add(new RuntimeOptionCategoryElement("magicbeans", "giant"));
         return setElements;
     }
- 
+
+    /* (non-Javadoc)
+     * @see net.minecraftforge.fml.client.IModGuiFactory#getHandlerFor(net.minecraftforge.fml.client.IModGuiFactory.RuntimeOptionCategoryElement)
+     */
     @Override
-    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) 
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
     {
         return null;
     }

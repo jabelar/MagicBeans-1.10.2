@@ -19,6 +19,7 @@
 
 package com.blogspot.jabelarminecraft.magicbeans.proxy;
 
+import com.blogspot.jabelarminecraft.magicbeans.EventHandler;
 import com.blogspot.jabelarminecraft.magicbeans.MagicBeans;
 import com.blogspot.jabelarminecraft.magicbeans.OreGenEventHandler;
 import com.blogspot.jabelarminecraft.magicbeans.TerrainGenEventHandler;
@@ -37,6 +38,7 @@ import com.blogspot.jabelarminecraft.magicbeans.networking.MessageToClient;
 import com.blogspot.jabelarminecraft.magicbeans.networking.MessageToServer;
 import com.blogspot.jabelarminecraft.magicbeans.tileentities.TileEntityMagicBeanStalk;
 import com.blogspot.jabelarminecraft.magicbeans.utilities.Utilities;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -418,7 +420,7 @@ public class CommonProxy
         // DEBUG
         System.out.println("Registering event listeners");
 
-//        MinecraftForge.EVENT_BUS.register(new EventHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenEventHandler());
         MinecraftForge.ORE_GEN_BUS.register(new OreGenEventHandler());        
     }
